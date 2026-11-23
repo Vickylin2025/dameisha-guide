@@ -15,6 +15,9 @@ async function submitAuthForm(form, action) {
     if (result.redirect) window.location.assign(result.redirect);
   } catch (error) {
     message.textContent = error.message;
+    if (error.message?.toLowerCase().includes('email not confirmed')) {
+      form.querySelector('#resendConfirmation')?.removeAttribute('hidden');
+    }
   } finally {
     button.disabled = false;
   }
@@ -50,6 +53,30 @@ if (loginForm) loginForm.addEventListener('submit', event => {
     const { error } = await supabase.auth.signInWithPassword({ email: values.email, password: values.password });
     return error ? { error } : { message: '登录成功', redirect: '/profile.html' };
   });
+});
+
+const resendConfirmation = document.querySelector('#resendConfirmation');
+if (resendConfirmation && loginForm) resendConfirmation.addEventListener('click', async () => {
+  const emailInput = loginForm.elements.email;
+  if (!emailInput.reportValidity()) return;
+  const message = loginForm.querySelector('.auth-message');
+  resendConfirmation.disabled = true;
+  message.textContent = '';
+  message.classList.remove('success');
+  try {
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email: emailInput.value.trim(),
+      options: { emailRedirectTo: `${window.location.origin}/login.html?verified=1` }
+    });
+    if (error) throw error;
+    message.textContent = '验证邮件已重新发送，请打开最新邮件中的链接。';
+    message.classList.add('success');
+  } catch (error) {
+    message.textContent = error.message;
+  } finally {
+    resendConfirmation.disabled = false;
+  }
 });
 
 const profileName = document.querySelector('#profileName');
@@ -94,5 +121,9 @@ const queryMessage = new URLSearchParams(window.location.search).get('message');
 const loginMessage = document.querySelector('#loginMessage');
 if (queryMessage && loginMessage) {
   loginMessage.textContent = queryMessage;
+  loginMessage.classList.add('success');
+}
+if (new URLSearchParams(window.location.search).get('verified') === '1' && loginMessage) {
+  loginMessage.textContent = '邮箱验证完成，现在可以登录。';
   loginMessage.classList.add('success');
 }
