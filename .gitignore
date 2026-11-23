@@ -1,0 +1,5 @@
+.vercel
+data/
+.env
+.env.*
+!.env.example

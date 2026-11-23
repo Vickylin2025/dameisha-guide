@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f7f5ef">
   <meta name="description" content="入住深圳大梅沙中兴和泰酒店，发现大梅沙海岸、山林与人文风景。">
   <title>玩转大梅沙 · 山海之间的度假时光</title>
+  <script type="module" src="/auth.js"></script>
   <style>
     :root{--ink:#153b43;--muted:#667b7b;--sea:#287b82;--green:#537b61;--paper:#f7f5ef;--white:#fffefa;--line:rgba(21,59,67,.13);--serif:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif}
     *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1180px,calc(100% - 48px));margin:auto}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sea);font-weight:700}.section{padding:96px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:34px}.section-head h2,.split-copy h2{font:500 clamp(32px,4vw,48px)/1.2 var(--serif);letter-spacing:-.04em;margin:10px 0 0}.section-head p{max-width:410px;color:var(--muted);margin:0;font-size:14px}
@@ -29,7 +30,7 @@
       <a class="brand" href="#home" aria-label="玩转大梅沙首页"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="7.5" r="3.2" fill="#C99B5C"/><path d="M4.5 22.5 13 14l5 5 5.5-7.2 8 10.7H4.5Z" stroke="#287B82" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 27c4-2.8 8-2.8 12 0s8 2.8 13 0" stroke="#287B82" stroke-width="1.9" stroke-linecap="round"/><path d="M8 31.5c3.2-2.1 6.5-2.1 9.7 0s6.5 2.1 10.3 0" stroke="#6D9D8B" stroke-width="1.7" stroke-linecap="round"/></svg></span>玩转大梅沙</a>
       <button class="menu-toggle" aria-label="打开导航" aria-expanded="false">☰</button>
       <div class="nav-links">
-        <a href="#home">首页</a><a href="#spots">周边景点</a><a href="#guide">游玩攻略</a><a href="#transport">交通指南</a><a class="nav-cta" href="#hotel">入住中兴和泰</a>
+        <a href="#home">首页</a><a href="#spots">周边景点</a><a href="#guide">游玩攻略</a><a href="#transport">交通指南</a><a class="nav-cta" href="#hotel">入住中兴和泰</a><a class="nav-cta" id="authLink" href="/login.html">登录</a>
       </div>
     </nav>
   </header>
@@ -74,7 +75,7 @@
     document.querySelector('.modal-close').addEventListener('click',()=>dialog.close());document.querySelector('#modalDone').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
     document.querySelectorAll('.fallback-image').forEach(img=>{img.addEventListener('error',()=>{img.style.display='none';img.parentElement.style.background=fallback})});
     const menu=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'关闭导航':'打开导航');menu.textContent=open?'×':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
-    let toastTimer;function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2400)}document.querySelector('.placeholder-link').addEventListener('click',e=>{e.preventDefault();toast('酒店咨询方式待酒店方确认后补充')});document.querySelector('#year').textContent=new Date().getFullYear();
+    document.querySelector('#year').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>

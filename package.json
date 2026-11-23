@@ -1,0 +1,13 @@
+{
+  "name": "dameisha-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "玩转大梅沙本地演示网站与账号服务",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

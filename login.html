@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <title>登录 · 玩转大梅沙</title>
+  <link rel="stylesheet" href="/auth.css">
+  <script type="module" src="/auth.js"></script>
+</head>
+<body>
+  <header class="auth-header"><nav class="auth-nav"><a class="auth-brand" href="/"><span class="auth-mark" aria-hidden="true">⌁</span>玩转大梅沙</a><a class="auth-nav-link" href="/">返回首页</a></nav></header>
+  <main class="auth-layout">
+    <section class="auth-scene"><div class="auth-scene-copy"><span class="auth-eyebrow">A COASTAL ESCAPE · SHENZHEN</span><h1>从海岸出发，<br>继续探索大梅沙。</h1><p>登录后进入你的个人中心。</p></div></section>
+    <section class="auth-form-wrap"><h2>欢迎回来</h2><p class="auth-subtitle">登录「玩转大梅沙」账号</p>
+      <form class="auth-form" id="loginForm">
+        <label class="field">邮箱<input name="email" type="email" autocomplete="email" required></label>
+        <label class="field">密码<input name="password" type="password" autocomplete="current-password" required></label>
+        <p class="auth-message" id="loginMessage" role="status" aria-live="polite"></p>
+        <button class="auth-submit" type="submit">登录</button>
+      </form>
+      <p class="auth-switch">还没有账号？<a href="/register.html">立即注册</a></p><a class="auth-back" href="/">← 返回网站首页</a>
+    </section>
+  </main>
+</body>
+</html>
